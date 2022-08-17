@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CommonString.cpp">
+    <ClCompile Include="WatchingMovie.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
