@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="UniqueString.cpp">
+    <ClCompile Include="KnightInTheWoods.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
