@@ -1,64 +1,102 @@
-#include<iostream>
-#include <vector>
-#include <queue>
+#include <iostream>
+#include<queue>
+
 using namespace std;
 
-int dx[4] = { -1,1,0,0 };
-int dy[4] = { 0,0,1,-1 };
+int dx[4] = { -1,0,1,0 };
+int dy[4] = { 0,1,0,-1 };
+
+int board[1001][1001], dis[2][1001][1001];
+
+queue<pair<int, int>> Q;
+
+int w, h;
+
+void BFS(int idx)
+{
+    while (!Q.empty())
+    {
+        int x = Q.front().first;
+        int y = Q.front().second;
+        Q.pop();
+
+        for (int i = 0; i < 4; i++)
+        {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx >= 0 && nx < h && ny >= 0 && ny < w && dis[idx][nx][ny] == 0)
+            {
+                if (board[nx][ny] != 1)
+                {
+                    dis[idx][nx][ny] = dis[idx][x][y] + 1;
+                    Q.push(make_pair(nx, ny));
+                }
+            }
+        }
+    }
+}
 
 int main()
 {
-	int w, h;
-	cin >> w >> h;
+    cin >> w >> h;
 
-	vector<vector<int>> in(h, vector<int>(w));
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            cin >> board[i][j];
+        }
+    }
 
-	pair<int, int> young, knight;
+    int j;
 
-	for (int i = 0; i < h; i++)
-	{
-		for (int j = 0; j < w; j++)
-		{
-			cin >> in[i][j];
+    for (int i = 0; i < h; i++)
+    {
+        for (j = 0; j < w; j++)
+        {
+            if (board[i][j] == 2)
+            {
+                dis[0][i][j] = 1;
+                Q.push(make_pair(i, j));
 
-			if (in[i][j] == 2)
-			{
-				young.first = j;
-				young.second = i;
-			}
+                BFS(0);
+                break;
+            }
+        }
+        if (j < w) break;
+    }
 
-			if (in[i][j] == 3)
-			{
-				knight.first = j;
-				knight.second = i;
-			}
+    for (int i = 0; i < h; i++)
+    {
+        for (j = 0; j < w; j++)
+        {
+            if (board[i][j] == 3)
+            {
+                dis[1][i][j] = 1;
+                Q.push(make_pair(i, j));
 
-		}
-	}
+                BFS(1);
+                break;
+            }
+        }
+        if (j < w) break;
+    }
 
-	vector<vector<int>> ycheck(in);
-	vector<vector<int>> kcheck(in);
+    int min = 21470000;
 
-	queue<pair<int, int>> check;
-
-	check.push(young);
-
-	while (!check.empty())
-	{
-		int x = check.front().first;
-		int y = check.front().second;
-
-		for (int i = 0; i < 4; i++)
-		{
-			int xx = x;
-			int yy = y;
-
-			if(xx+dx[i]>=0&& xx+dx[i]<=w && yy + dy[i] >= 0 && yy + dy[i] <= h&& in[yy+dy[i]][xx+dx[i]]==0 ||)
-
-		}
-	}
-
-	return 0;
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            if (board[i][j] == 4 && dis[0][i][j] > 0 && dis[1][i][j] > 0)
+            {
+                int res = dis[0][i][j] + dis[1][i][j];
+                if (res < min) min = res;
+            }
+        }
+    }
+    cout << min - 2;
+    return 0;
 }
 
 //8 4
