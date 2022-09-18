@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Distancing.cpp">
+    <ClCompile Include="CrossingTheRiver.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -10,7 +10,7 @@ int main()
 
 	cin >> n;
 
-	vector<int> t(n + 1);
+	vector<int> t((int)n + 1);
 
 	for (int i = 1; i <= n; i++)
 	{
