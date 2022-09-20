@@ -1,0 +1,7 @@
+title Dev-Patch
+
+cd  %~dp0
+
+if not exist "DevLog" (mkdir "DevLog")
+
+echo %date% %time%>> Dev%date%.txt
