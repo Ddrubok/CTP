@@ -1,36 +1,25 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
-int main()
+void main()
 {
 	int n;
-
 	cin >> n;
+	vector<string> insert(n);
 
-	vector<int> t((int)n + 1);
-
-	for (int i = 1; i <= n; i++)
+	for (int i = 0; i < n; i++)
 	{
-		cin >> t[i];
+		cin >> insert[i];
 	}
 
-	sort(t.begin(), t.end());
-
-	int res = 0, i;
-
-	for (i = n; i >= n; i -= 2)
-	{
-		res += min(t[1] + t[i] + t[i - 1] + t[1], t[2] + t[2] + t[i] + t[1]);
-	}
-
-	if (i == 3) res += t[1] + t[2] + t[3];
-	if (i == 2) res += t[2];
-	if (i == 1) res += t[1];
-
-	cout << res;
-
-	return 0;
 }
+
+
+
+//3
+//long
+//longtime
+//longest
