@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Find Patterns.cpp">
+    <ClCompile Include="MaximumCommonElement.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
