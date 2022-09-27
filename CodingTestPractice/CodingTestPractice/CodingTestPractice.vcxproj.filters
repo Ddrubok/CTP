@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MaximumCommonElement.cpp">
+    <ClCompile Include="TomAndJelly.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
