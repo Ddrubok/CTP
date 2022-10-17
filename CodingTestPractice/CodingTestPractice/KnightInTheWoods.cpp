@@ -1,6 +1,6 @@
 #include <iostream>
 #include<queue>
-
+#include<list>
 using namespace std;
 
 int dx[4] = { -1,0,1,0 };
@@ -11,91 +11,40 @@ int board[1001][1001], dis[2][1001][1001];
 queue<pair<int, int>> Q;
 
 int w, h;
-
-void BFS(int idx)
-{
-    while (!Q.empty())
-    {
-        int x = Q.front().first;
-        int y = Q.front().second;
-        Q.pop();
-
-        for (int i = 0; i < 4; i++)
-        {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-            if (nx >= 0 && nx < h && ny >= 0 && ny < w && dis[idx][nx][ny] == 0)
-            {
-                if (board[nx][ny] != 1)
-                {
-                    dis[idx][nx][ny] = dis[idx][x][y] + 1;
-                    Q.push(make_pair(nx, ny));
-                }
-            }
-        }
-    }
-}
-
 int main()
 {
     cin >> w >> h;
 
+    pair<int, int > StartPosition;
+    pair<int, int > knigtPosition;
+
+    list<int> check;
     for (int i = 0; i < h; i++)
     {
         for (int j = 0; j < w; j++)
         {
             cin >> board[i][j];
-        }
-    }
 
-    int j;
-
-    for (int i = 0; i < h; i++)
-    {
-        for (j = 0; j < w; j++)
-        {
             if (board[i][j] == 2)
             {
-                dis[0][i][j] = 1;
-                Q.push(make_pair(i, j));
-
-                BFS(0);
-                break;
+                StartPosition = { j,i };
             }
-        }
-        if (j < w) break;
-    }
-
-    for (int i = 0; i < h; i++)
-    {
-        for (j = 0; j < w; j++)
-        {
-            if (board[i][j] == 3)
+            else if (board[i][j] == 3)
             {
-                dis[1][i][j] = 1;
-                Q.push(make_pair(i, j));
-
-                BFS(1);
-                break;
+                knigtPosition = { j,i };
             }
         }
-        if (j < w) break;
     }
+    Q.push(StartPosition);
 
-    int min = 21470000;
-
-    for (int i = 0; i < h; i++)
+    while (!Q.empty())
     {
-        for (int j = 0; j < w; j++)
-        {
-            if (board[i][j] == 4 && dis[0][i][j] > 0 && dis[1][i][j] > 0)
-            {
-                int res = dis[0][i][j] + dis[1][i][j];
-                if (res < min) min = res;
-            }
-        }
+        int x = Q.front().first;
+        int y = Q.front().second;
+
     }
-    cout << min - 2;
+
+   
     return 0;
 }
 
