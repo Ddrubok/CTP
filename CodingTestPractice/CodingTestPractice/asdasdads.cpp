@@ -1,37 +1,52 @@
 ﻿#include <iostream>
-#include<vector>
-#include<stack>
+#include<unordered_map>
 
 using namespace std;
 int main()
 {
-	int num;
-	cin >> num;
-	vector<int> check(num+1);
-	for (int i = 1; i <= num; i++)
+	string in, in2;
+	unordered_map<char, int> check;
+	unordered_map<char, int> original;
+	
+	cin >> in >> in2;
+	int in2size = in2.size()-1;
+
+	for (int i = 0; i < in2size; i++)
 	{
-		cin >> check[i];
+		check[in[i]]++;
 	}
-	vector<int> checknum(num+1);
-	stack<int> in;
-	vector<int> result(num+1,0);
-	for (int i = num ; i > 0; i--)
+
+	for (int i = 0; i < in2size + 1; i++)
 	{
-		while (!in.empty() && check[in.top()] < check[i])
+		original[in2[i]]++;
+	}
+	int result = 0;
+	for (int i = in2size; i < in.size(); i++)
+	{
+		check[in[i]]++;
+
+		if (original == check)
 		{
-			result[in.top()] = i;
-			in.pop();
+			result++;
 		}
-		in.push(i);
+
+		check[in[i - in2size]]--;
+
+		if (check[in[i - in2size]] == 0)
+		{
+			check.erase(in[i - in2size]);
+		}
+		
 	}
-	for (int i = 1; i <= num; i++)
-	{
-		cout << result[i] << " ";
-	}
+
+	cout << result;
+
 	return 0;
 }
 
-//7
-//54 52 57 50 52 53 51
+//eabcbacade
+//abc
+
+
 
 
