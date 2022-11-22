@@ -1,51 +1,88 @@
 ﻿#include <iostream>
+#include<vector>
+#include<algorithm>
 #include<unordered_map>
-
 using namespace std;
+class MyMap :public unordered_map<wchar_t*, MyMap*>
+{
+public:
+	void addChild(wchar_t* key, MyMap* element)
+	{
+		insert(make_pair(key, element));
+	}
+	MyMap() {}
+	~MyMap() { clear(); }
+};
+
+class Parent
+{
+public:
+	vector<wchar_t*>value;
+	Parent() {}
+	virtual ~Parent()
+	{
+		value.clear();
+		cout << "value1";
+	}
+};
+
+class Child :public Parent
+{
+public:
+	vector<wchar_t*> value2;
+	Child() {}
+	~Child()
+	{
+		value2.clear();
+		cout << "value2";
+	}
+};
+//int main()
+//{
+//	unordered_map<wchar_t*, MyMap*>* p1 = new MyMap();
+//	delete p1;
+//
+//	wchar_t asd = L'A';
+//	unordered_map<wchar_t*, MyMap*>* p2 = new MyMap();
+//	static_cast<MyMap*>(p2)->addChild(&asd, new MyMap);
+//	delete p2;
+//
+//	wchar_t asd2 = L'A';
+//	Parent* p3 = new Child;
+//	static_cast<Child*>(p3)->value2.push_back(&asd2);
+//	delete p3;
+//
+//
+//	return 0;
+//}
+
+int asd(int x,int& asd)
+{
+	x--;
+	asd = x;
+	return 0;
+}
+
+int asd2(int& x)
+{
+	x--;
+	return 0;
+}
+
 int main()
 {
-	string in, in2;
-	unordered_map<char, int> check;
-	unordered_map<char, int> original;
-	
-	cin >> in >> in2;
-	int in2size = in2.size()-1;
-
-	for (int i = 0; i < in2size; i++)
-	{
-		check[in[i]]++;
-	}
-
-	for (int i = 0; i < in2size + 1; i++)
-	{
-		original[in2[i]]++;
-	}
-	int result = 0;
-	for (int i = in2size; i < in.size(); i++)
-	{
-		check[in[i]]++;
-
-		if (original == check)
-		{
-			result++;
-		}
-
-		check[in[i - in2size]]--;
-
-		if (check[in[i - in2size]] == 0)
-		{
-			check.erase(in[i - in2size]);
-		}
-		
-	}
-
-	cout << result;
+	int x = 10;
+	asd(x,x);
 
 	return 0;
 }
 
-//eabcbacade
-//abc
+//3
+//1
+//2
+//3
+//5
+
 
 
 

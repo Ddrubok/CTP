@@ -53,11 +53,6 @@ int main()
 					in[xx][yy] = in[x][y] + 1;
 					checkQue.push({ xx,yy });
 				}
-
-
-
-
-
 			}
 		}
 	}
